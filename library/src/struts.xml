@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+<struts>
+    <include file="struts-default.xml"/>
+    <package name="library" extends="struts-default">
+    <!-- 设计一个Booklist类，根据不同的请求进行调用不同的这个类中不同的方法；
+    其中这个类主要处理的是关于书籍作者信息展示的调用 -->
+        <action name="Booklist_*" method="{1}"  class="library.Booklist">
+        <result name="REFRESH">refresh.jsp</result><!-- 书籍更新方法 -->
+        <result name="detail">detail.jsp</result><!-- 跳转至获取书籍详细信息页面 -->
+        <result name="delete">delete.jsp</result><!-- 删除成功页面 -->
+        <result name="error">Error.jsp</result><!-- 出错页面 -->
+        <result name="list">book.jsp</result><!-- 书籍列表页面 -->
+        </action>
+        <!-- 设计UpdateInfo类进行，通过使用其中的各个方法进行对于书籍作者信息进行修改 -->
+        <action name="UpdateInfo_*" method="{1}"  class="library.UpdateInfo">
+        <result name="update_ok">delete.jsp</result><!-- 更新成功 -->
+        <result name="new_ok">delete.jsp</result><!-- 插入成功方法 -->
+        <result name="new_a_ok">newAuthor.jsp</result><!-- 插入作者成功 -->
+        <result name="error">Error.jsp</result><!-- 插入出错页面-->
+        </action>
+    </package>
+</struts>
